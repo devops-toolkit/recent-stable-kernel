@@ -2,6 +2,14 @@
 
 This project contains scripts for building the recent stable Linux kernel from sources from [www.kernel.org/](https://www.kernel.org/).
 
+- [How to build](#how-to-build)
+- [How to setup a builded kernel](#how-to-setup-a-builded-kernel)
+- [Troubleshooting](#troubleshooting)
+	- [Docker doesn't work after upgrading to a new kernel](#docker-doesnt-work-after-upgrading-to-a-new-kernel)
+	- [VirtualBox guest extensions don't work](#virtualbox-guest-extensions-dont-work)
+	- [VirtualBox from Ubuntu 16.04 repsitory doesn't work](#virtualbox-from-ubuntu-1604-repsitory-doesnt-work)
+- [License](#license)
+
 ## How to build
 
 ```
@@ -13,7 +21,7 @@ This project contains scripts for building the recent stable Linux kernel from s
 ./build-kernel.sh VERSION
 ```
 
-## How to setup builded kernel on Debian and Ubuntu
+## How to setup a builded kernel
 
 ```
 sudo dpkg -i linux-headers-*_amd64.deb
@@ -23,7 +31,7 @@ sudo dpkg -i linux-libc-dev_*.deb
 
 ## Troubleshooting
 
-### Docker doesn't work after upgrading to new kernel
+### Docker doesn't work after upgrading to a new kernel
 
 - check the kernel configuration with https://github.com/moby/moby/blob/master/contrib/check-config.sh
 
@@ -35,7 +43,7 @@ sudo dpkg -i linux-libc-dev_*.deb
 
   remove folder /var/lib/docker/auf with command: `sudo rm -rf /var/lib/docker/aufs`
 
-### When installing a new kernel into VirtualBox guest machine
+### VirtualBox guest extensions don't work
 
 After installing a new kernel perform:
 
@@ -43,6 +51,12 @@ After installing a new kernel perform:
 sudo apt install -y libelf-dev
 sudo apt install -y virtualbox-guest-dkms
 ```
+
+### VirtualBox from Ubuntu 16.04 repsitory doesn't work
+
+It doesn't work because of a [compilation issue with vboxpci](https://www.virtualbox.org/ticket/17683).
+
+Solution: install VirtualBox from the [official website](https://www.virtualbox.org/wiki/Downloads).
 
 ## License
 
