@@ -1,33 +1,24 @@
-# Recent Stable Kernel
+# Recent Stable Linux Kernel for Debian and Ubuntu
 
-This project contains scripts for building a stable vanilla kernel for Debian.
+This project contains scripts for building the recent stable Linux kernel from sources from [www.kernel.org/](https://www.kernel.org/).
 
-# Rebuild of Linux Kernel for Debian
-
-## How to build a kernel
-
-See https://kernel-handbook.alioth.debian.org/ch-common-tasks.html#s-kernel-org-package
-
-Build script:
+## How to build
 
 ```
-sudo apt-get update
-sudo apt-get build-dep linux -y
-sudo apt-get install -y build-essential fakeroot
+./configure.sh VERSION oldconfig
 
-wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.15.2.tar.xz
-tar -xaf linux-4.15.2.tar.xz
-cd linux-4.15.2
-cp ../.config .
+# if you want to tweak config options
+./configure.sh VERSION menuconfig
 
-time make -j4 deb-pkg
+./build-kernel.sh VERSION
 ```
 
-Setup the new kernel:
+## How to setup builded kernel on Debian and Ubuntu
 
 ```
-sudo dpkg -i linux-headers-4.15.2_4.15.2-1_amd64.deb
-sudo dpkg -i linux-image-4.15.2_4.15.2-1_amd64.deb
+sudo dpkg -i linux-headers-*_amd64.deb
+sudo dpkg -i linux-image-*_amd64.deb
+sudo dpkg -i linux-libc-dev_*.deb
 ```
 
 ## Troubleshooting
