@@ -43,13 +43,15 @@ sudo dpkg -i linux-libc-dev_*.deb
 
   remove folder /var/lib/docker/auf with command: `sudo rm -rf /var/lib/docker/aufs`
 
-### VirtualBox guest extensions don't work
+### VirtualBox guest extensions don't work after installing a new kernel
 
-After installing a new kernel perform:
+E.g.:
 
 ```
-sudo apt install -y libelf-dev
-sudo apt install -y virtualbox-guest-dkms
+curl -O https://download.virtualbox.org/virtualbox/5.2.12/VBoxGuestAdditions_5.2.12.iso
+sudo mount -o loop ./VBoxGuestAdditions_5.2.12.iso /mnt
+sudo apt-get install -y libelf-dev
+cd /mnt && sudo ./VBoxLinuxAdditions.run
 ```
 
 ### VirtualBox from Ubuntu 16.04 repsitory doesn't work
