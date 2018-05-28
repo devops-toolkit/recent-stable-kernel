@@ -16,5 +16,5 @@ $SD/download-and-extract.sh $VERSION
 cd $SD
 
 cp .config linux-$VERSION
-make -C linux-$VERSION menuconfig
+make -C linux-$VERSION $COMMAND
 cp linux-$VERSION/.config .config
