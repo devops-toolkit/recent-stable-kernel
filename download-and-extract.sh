@@ -8,8 +8,7 @@ SD=$(dirname $0)
 
 cd $SD
 
-wget --continue https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$VERSION.tar.xz
-
 if ! test -d linux-$VERSION; then
+    wget --continue https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$VERSION.tar.xz
     tar -xaf linux-$VERSION.tar.xz
 fi

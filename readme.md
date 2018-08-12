@@ -2,31 +2,39 @@
 
 This project contains scripts for building the recent stable Linux kernel from sources from [www.kernel.org/](https://www.kernel.org/).
 
+- [How to configure](#how-to-configure)
 - [How to build](#how-to-build)
 - [How to setup a builded kernel](#how-to-setup-a-builded-kernel)
 - [Troubleshooting](#troubleshooting)
 	- [Docker doesn't work after upgrading to a new kernel](#docker-doesnt-work-after-upgrading-to-a-new-kernel)
-	- [VirtualBox guest extensions don't work](#virtualbox-guest-extensions-dont-work)
+	- [VirtualBox guest extensions don't work after installing a new kernel](#virtualbox-guest-extensions-dont-work-after-installing-a-new-kernel)
 	- [VirtualBox from Ubuntu 16.04 repsitory doesn't work](#virtualbox-from-ubuntu-1604-repsitory-doesnt-work)
 - [License](#license)
+
+## How to configure
+
+First of all, it is necessary to prepare the configuration file.
+
+If you don't want manually configure new kernel options, execute: `./configure.sh VERSION olddefconfig`
+
+If you want to manually configure new options, execute: `./configure.sh VERSION oldconfig`
+
+If you want to modify configuration, execute: `./configure.sh VERSION menuconfig`
 
 ## How to build
 
 ```
-./configure.sh VERSION oldconfig
-
-# if you want to tweak config options
-./configure.sh VERSION menuconfig
-
 ./build-kernel.sh VERSION
 ```
+
+After the build is finished, directory results-VERSION-dtk-TIMESTAMP will contain debian packages
+with the new kernel.
 
 ## How to setup a builded kernel
 
 ```
-sudo dpkg -i linux-headers-*_amd64.deb
-sudo dpkg -i linux-image-*_amd64.deb
-sudo dpkg -i linux-libc-dev_*.deb
+cd results-VERSION-dtk-TIMESTAMP
+sudo dpkg -i *.deb
 ```
 
 ## Troubleshooting
