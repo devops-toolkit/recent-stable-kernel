@@ -19,10 +19,9 @@ echo "-$LOCALVERSION" >output-$VERSION/localversion
 
 docker run --rm -it \
         --name kernel-build-$DT \
-		-u `id -u`:`id -g` \
 		-v `pwd`:/data \
-		quay.io/devops-toolkit/kernel-builder:1.0.1 \
-		/data/build-kernel-inside-docker.sh $VERSION
+		quay.io/devops-toolkit/kernel-builder:1.1.0 \
+		/data/build-kernel-inside-docker.sh $VERSION $(id -u)
 
 RESULTS_DIR=results-$VERSION-$LOCALVERSION-$DT
 
