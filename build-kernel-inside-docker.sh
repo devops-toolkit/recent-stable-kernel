@@ -13,5 +13,6 @@ adduser --shell /bin/bash --uid $USER_ID --gid $USER_ID --no-create-home --gecos
 
 cd /data/linux-$VERSION
 
-time sudo -u kernel-builder make clean
+time sudo -u kernel-builder make mrproper
+time sudo -u kernel-builder make O=/data/output-$VERSION -j $PROCESSORS clean
 time sudo -u kernel-builder make O=/data/output-$VERSION -j $PROCESSORS bindeb-pkg
