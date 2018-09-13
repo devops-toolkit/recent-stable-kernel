@@ -17,7 +17,7 @@ mkdir -p output-$VERSION
 cp .config output-$VERSION
 echo "-$LOCALVERSION" >output-$VERSION/localversion
 
-docker run --rm -it \
+docker run --rm \
         --name kernel-build-$DT \
 		-v `pwd`:/data \
 		quay.io/devops-toolkit/kernel-builder:1.1.0 \
